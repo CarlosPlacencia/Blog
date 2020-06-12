@@ -1,1 +1,14 @@
 <!-- Display all written articels -->
+<% articles.forEach(article => {%>
+    <div>
+        <h3><%=article.title%></h3>
+        <%=article.createdAt.toLocaleDateString()%>
+        <br>
+        <p><%=article.description%></p>
+        <a href="/articles/<%= article.slug%>">Read More</a>
+        <a href="/articles/edit/<%= article.id%>">Edit</a>
+        <form action="/articles/<%=article.id%>?_method=Delete" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+<% }) %>
