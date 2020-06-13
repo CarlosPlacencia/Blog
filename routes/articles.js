@@ -2,6 +2,10 @@ const express = require( 'express' );
 const router = express.Router();
 
 const Article = require( '../models/article');
+const middleware = require( '../middleware/index');
+const middlewareObj = require('../middleware/index');
+
+let User = require( '../models/user' );
 
 /*
     Routes
@@ -16,17 +20,16 @@ const Article = require( '../models/article');
 
 */
 
-router.get( '/', async (req, res) => {
-
+router.get( '/', middlewareObj.isLoggedIn, async (req, res) => {
     try{
         const articles = await Article.find();
-        res.render( 'blog/index', {articles: articles});
+        res.render( 'blog/index', {articles: articles, currentUser: req.user.username});
     } catch {
         res.redirect('/');
     }
 });
 
-router.get( '/new', (req, res) => {
+router.get( '/new', middlewareObj.isLoggedIn,(req, res) => {
     res.render( 'blog/new', {article: new Article()});
 });
 
@@ -36,12 +39,12 @@ router.post( '/new', async (req, res, next) => {
 }, saveArticleAndRedirect( 'new' ));
 
 
-router.get( '/:slug', async (req, res) => {
+router.get( '/:slug', middlewareObj.isLoggedIn, async (req, res) => {
     const article = await Article.findOne({slug: req.params.slug});
     res.render( "blog/show", {article: article} );
 });
 
-router.get( '/edit/:id', async (req, res) => {
+router.get( '/edit/:id', middlewareObj.isLoggedIn,async (req, res) => {
     const article = await Article.findById(req.params.id);
     res.render( 'blog/edit', {article: article});
 });

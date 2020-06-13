@@ -10,6 +10,7 @@ const mongoose = require( 'mongoose' );
 
 const passport = require( 'passport' );
 const LocalStrategy = require( 'passport-local' );
+const flash = require('express-flash');
 
 let User = require( './models/user' );
 
@@ -47,6 +48,7 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+app.use(flash());
 
 // app.use routes
 app.use( '/', indexRouter);

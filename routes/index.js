@@ -12,7 +12,7 @@ let User = require( '../models/user' );
     - Will redirect to the articles '/articles'
 */
 router.get( '/', ( req, res ) => {
-    res.render( 'index' );
+    res.render( 'index');
 } );
 
 router.post( '/login', passport.authenticate( 'local', {

@@ -1,4 +1,8 @@
 <!-- Will contain the login form -->
+<% if (messages.error) { %>
+    <%= messages.error %> 
+<% } %>
+
 <form action="/login" method="post">
     <label for="Username">username</label>
     <input type="text" name="username" placeholder="Username">

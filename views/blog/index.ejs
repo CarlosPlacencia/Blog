@@ -6,9 +6,13 @@
         <br>
         <p><%=article.description%></p>
         <a href="/articles/<%= article.slug%>">Read More</a>
-        <a href="/articles/edit/<%= article.id%>">Edit</a>
-        <form action="/articles/<%=article.id%>?_method=Delete" method="POST">
-            <button type="submit">Delete</button>
-        </form>
+        <% if (currentUser === 'Admin') { %>
+            <a href="/articles/edit/<%= article.id%>">Edit</a>
+            <form action="/articles/<%=article.id%>?_method=Delete" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        <% } %>
     </div>
 <% }) %>
+
+  
