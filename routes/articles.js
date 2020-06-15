@@ -20,10 +20,14 @@ let User = require( '../models/user' );
 
 */
 
-router.get( '/', middlewareObj.isLoggedIn, async (req, res) => {
+router.get( '/', async (req, res) => {
     try{
         const articles = await Article.find();
-        res.render( 'blog/index', {articles: articles, currentUser: req.user.username});
+        if(req.user === undefined){
+            res.render( 'blog/index', {articles: articles, currentUser: 'guest'});
+        } else {
+            res.render( 'blog/index', {articles: articles, currentUser: req.user.username});
+        }
     } catch {
         res.redirect('/');
     }
@@ -33,13 +37,13 @@ router.get( '/new', middlewareObj.isLoggedIn,(req, res) => {
     res.render( 'blog/new', {article: new Article()});
 });
 
-router.post( '/new', async (req, res, next) => {
+router.post( '/new', middlewareObj.isLoggedIn, async (req, res, next) => {
     req.article = new Article();
     next();
 }, saveArticleAndRedirect( 'new' ));
 
 
-router.get( '/:slug', middlewareObj.isLoggedIn, async (req, res) => {
+router.get( '/:slug', async (req, res) => {
     const article = await Article.findOne({slug: req.params.slug});
     res.render( "blog/show", {article: article} );
 });
@@ -49,7 +53,7 @@ router.get( '/edit/:id', middlewareObj.isLoggedIn,async (req, res) => {
     res.render( 'blog/edit', {article: article});
 });
 
-router.put( '/edit/:id', async (req, res, next) => {
+router.put( '/edit/:id', middlewareObj.isLoggedIn, async (req, res, next) => {
     req.article = await Article.findById(req.params.id)
     next();
 }, saveArticleAndRedirect( 'edit' ));
@@ -59,8 +63,6 @@ router.delete( '/:id', async (req, res) => {
     res.redirect( '/articles' );
 
 })
-
-
 
 // Functions
 function saveArticleAndRedirect(path){
