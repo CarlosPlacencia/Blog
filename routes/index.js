@@ -3,34 +3,30 @@ const router = express.Router();
 
 const passport = require( 'passport');
 
+const Article = require( '../models/article');
 let User = require( '../models/user' );
 
-/* 
-    Landig Page
-    - Do something creative
-    - Have Admin Login or Continue as a Guest 
-    - Will redirect to the articles '/articles'
-*/
-router.get( '/', ( req, res ) => {
+router.get( '/', async (req, res) => {
+    try{
+        const articles = await Article.find();
+        if(req.user === undefined){
+            res.render( 'blog/index', {articles: articles, currentUser: 'guest'});
+        } else {
+            res.render( 'blog/index', {articles: articles, currentUser: req.user.username});
+        }
+    } catch {
+        res.redirect('/');
+    }
+});
+
+router.get( '/admin', ( req, res ) => {
     res.render( 'index');
 } );
 
 router.post( '/login', passport.authenticate( 'local', {
-    successRedirect: '/articles',
-    failureRedirect: '/'
+    successRedirect: '/',
+    failureRedirect: '/admin'
 }));
 
-
-// function RegisterGuestandAdmin(){
-//     let admin = {
-//         username: process.env.ADMIN_USERNAME,
-//     }
-//     let guest = {
-//         username: process.env.GUEST_USERNAME
-//     }
-
-//     User.register(admin, process.env.ADMIN_PASSWORD);
-//     User.register(guest, process.env.GUEST_PASSWORD);
-// }
 
 module.exports = router;

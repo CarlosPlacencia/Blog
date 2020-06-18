@@ -7,9 +7,10 @@ const middlewareObj = require('../middleware/index');
 
 let User = require( '../models/user' );
 
+const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
 /*
     Routes
-    '/'             GET         | Displays all articles created, creates new article
     '/new'          GET         | Shows form to create article
     '/new'          POST        | Save newly created article to the databse
     '/:id'          GET         | Display specific article
@@ -19,19 +20,6 @@ let User = require( '../models/user' );
 
 
 */
-
-router.get( '/', async (req, res) => {
-    try{
-        const articles = await Article.find();
-        if(req.user === undefined){
-            res.render( 'blog/index', {articles: articles, currentUser: 'guest'});
-        } else {
-            res.render( 'blog/index', {articles: articles, currentUser: req.user.username});
-        }
-    } catch {
-        res.redirect('/');
-    }
-});
 
 router.get( '/new', middlewareObj.isLoggedIn,(req, res) => {
     res.render( 'blog/new', {article: new Article()});
@@ -60,7 +48,7 @@ router.put( '/edit/:id', middlewareObj.isLoggedIn, async (req, res, next) => {
 
 router.delete( '/:id', async (req, res) => {
     await Article.findByIdAndDelete(req.params.id);
-    res.redirect( '/articles' );
+    res.redirect( '/' );
 
 })
 
@@ -72,6 +60,9 @@ function saveArticleAndRedirect(path){
         article.title = req.body.title;
         article.description = req.body.description;
         article.markdown = req.body.markdown;
+        if(req.body.image != null && req.body.image !== ''){
+            saveImage(article, req.body.image);
+        }
         try{
             article = await article.save();
             res.redirect(`/articles/${article.slug}`);
@@ -79,6 +70,15 @@ function saveArticleAndRedirect(path){
         } catch(e){
             res.render(`/articles/${path}/${article.slug}`, {article: article});
         }
+    }
+}
+
+function saveImage(article, imageEncoded){
+    if(imageEncoded == null ) return;
+    const image = JSON.parse(imageEncoded);
+    if(image != null && imageMimeTypes.includes(image.type)){
+        article.image = new Buffer.from(image.data, 'base64');
+        article.imageType = image.type;
     }
 }
 

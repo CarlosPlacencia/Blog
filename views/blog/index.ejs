@@ -1,4 +1,9 @@
 <!-- Display all written articels -->
+<!-- Will refactor code from line 2-4 to the '/partials' -->
+<% if (messages.error) { %>
+    <%= messages.error %> 
+<% } %>
+
 <% articles.forEach(article => {%>
     <div>
         <h3><%=article.title%></h3>
