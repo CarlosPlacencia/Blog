@@ -3,28 +3,28 @@
     <%= messages.error %> 
 <% } %>
 
-<div class="landingContainer">
-    <form action="/login" method="post" class="form-signin">
+    <div class="Admin-login-container">
+        <h1>Admin Login</h1>
+        <div class="image-container">
+            <img src="/images/reading.svg" alt="girl reading a book" class="loginImage">
+        </div>
 
-        <div class="text-center mb-4">
+    
+        <form action="/login" method="post" class="form-container">
 
-            <svg class="bi bi-person-fill" width="8em" height="8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-            </svg>
-              
-            <h1 class="h3 mb-3 font-weight-normal">My Blog</h1>
-        </div>
-          
-        <div class="form-label-group">
-            <input type="text" id="Username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-            <label for="Username">Username</label>
-        </div>
+            <div class="login-inputs-container">
+                <label for="Username"></label>
+                <input type="text" id="Username" name="username" placeholder="Username" required="" autofocus="">
+                
+                <label for="Username"></label>
+                <input type="password" id="Password" name="password" placeholder="Password" required="">
+                
+            </div>
+                      
+            <button type="submit" class="login-button">Login</button>
     
-        <div class="form-label-group">
-            <input type="password" id="Password" name="password" class="form-control" placeholder="Password" required="">
-            <label for="Password">Password</label>
-        </div>
-    
-        <button type="submit" class="btn btn-lg btn-primary btn-block">Sign In</button>
-    </form>
-</div>
+        </form>
+    </div>
+
+
+
