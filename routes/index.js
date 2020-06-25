@@ -5,10 +5,11 @@ const passport = require( 'passport');
 
 const Article = require( '../models/article');
 let User = require( '../models/user' );
+const { findOne } = require('../models/article');
 
 router.get( '/', async (req, res) => {
     try{
-        const articles = await Article.find();
+        const articles = await Article.find().sort({createdAt: -1});
         if(req.user === undefined){
             res.render( 'blog/index', {articles: articles, currentUser: 'guest'});
         } else {
@@ -27,6 +28,5 @@ router.post( '/login', passport.authenticate( 'local', {
     successRedirect: '/',
     failureRedirect: '/admin'
 }));
-
 
 module.exports = router;

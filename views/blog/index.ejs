@@ -4,20 +4,34 @@
     <%= messages.error %> 
 <% } %>
 
-<% articles.forEach(article => {%>
-    <div>
-        <h3><%=article.title%></h3>
-        <%=article.createdAt.toLocaleDateString()%>
+<div class="index-container">
+    <nav>
+        <h1>Melli's Blog</h1>
+        <!-- Have the write icon -->
+    </nav>
+
+    <div class="latest-article">
+        <img src="<%= articles[0].imagePath %>">
+    </div>
+
+
+    <% for( let article = 1; article < articles.length; article++ ) { %>
+        <h3><%=articles[article].title%></h3>
+        <%=articles[article].createdAt.toLocaleDateString()%>
         <br>
-        <p><%=article.description%></p>
-        <a href="/articles/<%= article.slug%>">Read More</a>
+        <p><%=articles[article].description%></p>
+        <a href="/articles/<%= articles[article].slug%>">Read More</a>
         <% if (currentUser === 'Admin') { %>
-            <a href="/articles/edit/<%= article.id%>">Edit</a>
-            <form action="/articles/<%=article.id%>?_method=Delete" method="POST">
+            <a href="/articles/edit/<%= articles[article].id%>">Edit</a>
+            <form action="/articles/<%= articles[article].id%>?_method=Delete" method="POST">
                 <button type="submit">Delete</button>
             </form>
         <% } %>
     </div>
-<% }) %>
+    <% } %>
+    
+</div>
+
+
 
   
