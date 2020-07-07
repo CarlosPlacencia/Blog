@@ -29,4 +29,6 @@ router.post( '/login', passport.authenticate( 'local', {
     failureRedirect: '/admin'
 }));
 
+
+
 module.exports = router;

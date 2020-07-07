@@ -4,33 +4,72 @@
     <%= messages.error %> 
 <% } %>
 
-<div class="index-container">
-    <nav>
-        <h1>Melli's Blog</h1>
-        <!-- Have the write icon -->
-    </nav>
 
-    <div class="latest-article">
-        <img src="<%= articles[0].imagePath %>">
+
+<%- include('../partials/header.ejs') %>
+
+<div class="phone_page-container">
+    <div class="phone_page-bottom">
+        <a href="/articles/<%= articles[0].slug%>">
+            <div class="imageCard">
+                <img src="<%= articles[0].imagePath %>" class="imageCard_image">
+                <div class="imageCard_text-wrapper">
+                <h2 class="imageCard_title"><%= articles[0].title %></h2>
+                <div class="imageCard_date"><%=articles[0].createdAt.toLocaleDateString()%></div>
+                </div>
+          </div>
+        </a>
     </div>
 
 
-    <% for( let article = 1; article < articles.length; article++ ) { %>
-        <h3><%=articles[article].title%></h3>
-        <%=articles[article].createdAt.toLocaleDateString()%>
-        <br>
-        <p><%=articles[article].description%></p>
-        <a href="/articles/<%= articles[article].slug%>">Read More</a>
-        <% if (currentUser === 'Admin') { %>
-            <a href="/articles/edit/<%= articles[article].id%>">Edit</a>
-            <form action="/articles/<%= articles[article].id%>?_method=Delete" method="POST">
-                <button type="submit">Delete</button>
-            </form>
-        <% } %>
-    </div>
-    <% } %>
+        <div class="articles">
+            <% for( let article = 1; article < articles.length; article++ ) { %>
+                <div class="blogCard">
+                    <div class="blogCard_container">
+                        <div class="blogCard_top">
+                            <% if (currentUser === 'Admin') { %>
+                                <a href="/articles/edit/<%= articles[article].id%>">
+                                    <i class="fa fa-pencil-square-o blogCard_edit" aria-hidden="true"></i>
+                                </a>
     
+                                <form action="/articles/<%= articles[article].id%>?_method=Delete" method="POST">
+                                    <button type="submit"><i class="fa fa-trash blogCard_delete" aria-hidden="true"></i></button>
+                                </form>
+                            <% } %>                  
+                        </div>
+                        <div class="blogCard_middle">
+                          <img src="<%= articles[article].imagePath %>" alt="korea" class="blogCard_image">
+                          <div class="blogCard_text-wrapper">
+                            <h3 class="blogCard_title"><%=articles[article].title%></h3>
+                            <div class="blogCard_description">
+                                <%=articles[article].description%>
+                            </div>
+                            <div class="blogCard_date"><%=articles[article].createdAt.toLocaleDateString()%></div>
+                          </div>
+                        </div>
+                        <div class="blogCard_bottom">
+                          <div class="blogCard_read-more">
+
+
+                            <a href="/articles/<%= articles[article].slug%>">
+                                <h5>Read More
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                </h5>
+                            </a>
+
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            <% } %>
+        </div>
+
+    </div>
 </div>
+
+
+
+
 
 
 
