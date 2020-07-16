@@ -22,7 +22,7 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 */
 
 router.get( '/new', middlewareObj.isLoggedIn,(req, res) => {
-    res.render( 'blog/new', {article: new Article()});
+    res.render( 'blog/new', {article: new Article(), currentUser: req.user.username});
 });
 
 router.post( '/new', middlewareObj.isLoggedIn, async (req, res, next) => {
@@ -32,13 +32,17 @@ router.post( '/new', middlewareObj.isLoggedIn, async (req, res, next) => {
 
 
 router.get( '/:slug', async (req, res) => {
+    let currentUser = '';
+    if(req.isAuthenticated()){ currentUser = 'Admin'}
+    
     const article = await Article.findOne({slug: req.params.slug});
-    res.render( "blog/show", {article: article} );
+    
+    res.render( "blog/show", {article: article,  currentUser: currentUser} );
 });
 
 router.get( '/edit/:id', middlewareObj.isLoggedIn,async (req, res) => {
     const article = await Article.findById(req.params.id);
-    res.render( 'blog/edit', {article: article});
+    res.render( 'blog/edit', {article: article, currentUser: req.user.username});
 });
 
 router.put( '/edit/:id', middlewareObj.isLoggedIn, async (req, res, next) => {
@@ -68,7 +72,8 @@ function saveArticleAndRedirect(path){
             res.redirect(`/articles/${article.slug}`);
             
         } catch(e){
-            res.render(`/articles/${path}/${article.slug}`, {article: article});
+            console.log(e);
+            res.redirect(`/`);
         }
     }
 }

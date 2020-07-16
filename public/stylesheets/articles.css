@@ -130,3 +130,62 @@
     margin-top: 15px;
     z-index: 100;
   }
+
+
+/************************************* Form ************************************************/
+
+/* .container{
+  border: 1px solid red;
+
+} */
+
+.formContainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+}
+
+.blogForm{
+  display: flex;
+  flex-direction: column;
+
+  text-transform: uppercase;
+  width: 90%;
+}
+
+.blogTitle{
+  line-height: 2em;
+  border: none;
+  margin-bottom: 5%;
+}
+
+textarea {
+  resize: none;
+  border: none;
+  margin-bottom: 5%;
+}
+
+label{
+  margin-bottom: 3%;
+}
+
+.submitButton{
+  height: 25px;
+  padding: 5px;
+  border: none;
+  text-transform: uppercase;
+  margin-left: 10px;
+}
+
+.cancelSubmit{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+
+.filepond--root {
+  width: 100%;
+}

@@ -1,6 +1,13 @@
-<form action="/articles/edit/<%= article.id%>?_method=PUT" method="POST">
-    <%- include( 'form_fields' )%>
-    <br>
-    <a href="/">Cancel</a>
-    <button type="submit">Update</button>
-</form>
+
+<%- include('../partials/header.ejs') %>
+<div class="formContainer">
+    <form action="/articles/edit/<%= article.id%>?_method=PUT" method="POST" class="blogForm">
+
+        <%- include( 'form_fields' )%>
+        <div class="cancelSubmit">
+            <a href="/">Cancel</a>
+            <button type="submit" class="submitButton">Update</button>
+        </div>
+
+    </form>
+</div>
