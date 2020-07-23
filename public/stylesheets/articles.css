@@ -110,8 +110,13 @@
   
   .blogCard_text-wrapper{
     display: flex;
+    width: 75%;
     flex-direction: column;
     margin-left: 15px;
+  }
+
+  .blogCard_description{
+    overflow-wrap: break-word;
   }
   
   .blogCard_title{
