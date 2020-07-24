@@ -22,7 +22,8 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
 */
 
 router.get( '/new', middlewareObj.isLoggedIn,(req, res) => {
-    res.render( 'blog/new', {article: new Article(), currentUser: req.user.username});
+    let page = "new";
+    res.render( 'blog/new', {article: new Article(), currentUser: req.user.username, page: page});
 });
 
 router.post( '/new', middlewareObj.isLoggedIn, async (req, res, next) => {
@@ -33,16 +34,18 @@ router.post( '/new', middlewareObj.isLoggedIn, async (req, res, next) => {
 
 router.get( '/:slug', async (req, res) => {
     let currentUser = '';
+    let page = "show"
     if(req.isAuthenticated()){ currentUser = 'Admin'}
     
     const article = await Article.findOne({slug: req.params.slug});
     
-    res.render( "blog/show", {article: article,  currentUser: currentUser} );
+    res.render( "blog/show", {article: article,  currentUser: currentUser, page: page} );
 });
 
 router.get( '/edit/:id', middlewareObj.isLoggedIn,async (req, res) => {
+    page = "edit";
     const article = await Article.findById(req.params.id);
-    res.render( 'blog/edit', {article: article, currentUser: req.user.username});
+    res.render( 'blog/edit', {article: article, currentUser: req.user.username, page: page});
 });
 
 router.put( '/edit/:id', middlewareObj.isLoggedIn, async (req, res, next) => {

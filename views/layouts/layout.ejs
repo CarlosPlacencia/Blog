@@ -32,7 +32,12 @@
     <title>Document</title>
 </head>
 <body>
-        <%- include('../partials/header.ejs') %>
+        <% if(page === 'Admin'){ %>
+
+        <% } else { %>
+            <%- include('../partials/header.ejs') %>
+        <% } %>
+        
         <%- body %>
 </body>
 </html>
