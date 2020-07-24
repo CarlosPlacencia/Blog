@@ -5,15 +5,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 20px 0 20px;
     position: fixed;
-    width: 90%;
+    width: 100%;
     z-index: 1;
   }
   
   .add-new-post{
-    margin-left: 64%;
+    margin-left: 45%;
     color: white;
+  }
+
+  .title{
+    margin-right: 6%;
   }
 
   .phone_page-container, .phone_page-bottom{
