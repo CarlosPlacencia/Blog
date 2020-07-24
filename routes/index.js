@@ -21,7 +21,8 @@ router.get( '/', async (req, res) => {
 });
 
 router.get( '/admin', ( req, res ) => {
-    res.render( 'index');
+    let currentUser = '';
+    res.render( 'index', {currentUser});
 } );
 
 router.post( '/login', passport.authenticate( 'local', {
