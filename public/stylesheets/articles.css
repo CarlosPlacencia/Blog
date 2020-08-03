@@ -5,9 +5,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
     position: fixed;
     width: 100%;
     z-index: 1;
+    top: 0;
   }
   
   .add-new-post{
@@ -200,4 +202,48 @@ label{
 
 .filepond--root {
   width: 100%;
+}
+
+
+/************************************* Show Page ************************************************/
+.bodyContainer{
+  width: 100%;
+  border: 1px solid red;
+  margin-top: 58.72px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content{
+  background: #e1e2e4;
+  width: 100%;
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  padding: 10px;
+}
+
+.blogBody_Top{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 50px;
+}
+
+.right{
+  display: flex;
+  padding: 3px;
+}
+
+code{
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
 }

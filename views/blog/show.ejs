@@ -1,7 +1,27 @@
+<div class="bodyContainer">
+    <div class="imageCard">
+        <img src="<%= article.imagePath %>" class="imageCard_image">
+        <div class="imageCard_text-wrapper">
+        <h2 class="imageCard_title"><%= article.title %></h2>
+        <div class="imageCard_date"><%=article.createdAt.toLocaleDateString()%></div>
+        </div>
+  </div>
 
+    <div class="blogBody_Top">
+        <div class="right">
+            <a href="/articles/edit/<%= article.id%>">
+                <i class="fa fa-pencil-square-o blogCard_edit" aria-hidden="true"></i>
+            </a>
+                <form action="/articles/<%= article.id%>?_method=Delete" method="POST">
+                    <button type="submit"><i class="fa fa-trash blogCard_delete" aria-hidden="true"></i></button>
+                </form>
 
-<h1><%= article.title %></h1>
-<img height="100" width="80" src="<%= article.imagePath %>" alt="">
-<div>
-    <%- article.sanitizedHtml %> 
+        </div>
+    </div>
+    
+    
+     <div class="content">
+         <%- article.sanitizedHtml %>
+     </div>
 </div>
+
