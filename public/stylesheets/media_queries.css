@@ -1,0 +1,9 @@
+@media screen and (min-width: 818px) {
+    .phone_page-container{
+        background-color: red;
+    }
+
+    .Admin-login-container{
+        padding: 20px;
+    }
+}

@@ -1,5 +1,6 @@
 @import 'variables.css';
 @import 'articles.css';
+@import 'media_queries.css';
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600');
 
 :root{
@@ -102,4 +103,11 @@ textarea{
 
 .headerTitle{
     color: white;
+}
+
+
+@media screen and (min-width: 518px) {
+    .Admin-login-container{
+        padding: 100px;
+    }
 }
