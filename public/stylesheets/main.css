@@ -23,6 +23,10 @@ body{
     background-color: #f2f4f8;
 }
 
+textarea{
+    padding: 10px;
+}
+
 
 /* Admin Login */
 

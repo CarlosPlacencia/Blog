@@ -8,6 +8,7 @@
   </div>
 
     <div class="blogBody_Top">
+        <% if (currentUser === 'Admin') { %>
         <div class="right">
             <a href="/articles/edit/<%= article.id%>">
                 <i class="fa fa-pencil-square-o blogCard_edit" aria-hidden="true"></i>
@@ -17,6 +18,7 @@
                 </form>
 
         </div>
+        <% } %>  
     </div>
     
     
