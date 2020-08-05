@@ -1,3 +1,8 @@
+.webContainer{
+  display: flex;
+  justify-content: center;
+}
+
 .top{
     height: 6.8%;
     background-color: #3D4878;
