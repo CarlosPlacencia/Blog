@@ -9,9 +9,9 @@
 
 
 <div class="phone_page-container">
-    <div class="phone_page-bottom">
+    <div class="phone_page-bottom row">
         <a href="/articles/<%= articles[0].slug%>">
-            <div class="imageCard">
+            <div class="imageCard col-1">
                 <img src="<%= articles[0].imagePath %>" class="imageCard_image">
                 <div class="imageCard_text-wrapper">
                 <h2 class="imageCard_title"><%= articles[0].title %></h2>
@@ -22,9 +22,9 @@
     </div>
 
 
-        <div class="articles">
+        <div class="articles row">
             <% for( let article = 1; article < articles.length; article++ ) { %>
-                <div class="blogCard">
+                <div class="blogCard col-2">
                     <div class="blogCard_container">
                         <div class="blogCard_top">
                             <% if (currentUser === 'Admin') { %>
