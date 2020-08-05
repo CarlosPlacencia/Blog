@@ -43,6 +43,10 @@
   margin-left: 10px;
 }
 
+.col-2, .col-1{
+  flex: 0 0 97%;
+}
+
   
 
 /************************************* Image Card ************************************************/
@@ -280,7 +284,7 @@ code{
 }
 
 
-@media only screen and (min-width: 530px){
+@media only screen and (min-width: 570px){
   [class*="col-"]{
     margin: 0 2%;
   }
