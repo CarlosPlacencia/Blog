@@ -1,14 +1,20 @@
 
-
-    <label for="title">title</label>
-    <input type="text" name="title" value="<%= article.title %>" class="blogTitle">
+    <div class="formRow">
+        <label for="title">title</label>
+        <input type="text" name="title" value="<%= article.title %>" class="blogTitle">
+    </div>
     
-
-    <label for="image">Image</label>
-    <input type="file" name="image" class="filepond">
-
-    <label for="description">description</label>
-    <textarea name="description" cols="30" rows="10" maxlength = "100"><%= article.description %></textarea>
+    <div class="formRow">
+        <div class="col-1-3">
+            <label for="image">Image</label>
+            <input type="file" name="image" class="filepond">
+        </div>
+        <div class="col-1-2">
+            <label for="description">description</label>
+            <textarea name="description" cols="30" rows="10" maxlength = "100"><%= article.description %></textarea>
+        </div>
+    
+    </div>
     
   
     

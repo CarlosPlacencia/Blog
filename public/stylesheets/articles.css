@@ -1,6 +1,7 @@
 .webContainer{
   display: flex;
   justify-content: center;
+  /* height: 100vh; */
 }
 
 .top{
@@ -198,9 +199,11 @@
   line-height: 2em;
   border: none;
   margin-bottom: 5%;
+  width: 100%;
 }
 
 textarea {
+  width: 100%;
   resize: none;
   border: none;
   margin-bottom: 5%;
@@ -211,6 +214,8 @@ label{
 }
 
 .btn{
+  background-color: #3D4878;
+  color: white;
   height: 27px;
   padding: 10px;
   border-radius: 4px;

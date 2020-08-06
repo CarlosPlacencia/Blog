@@ -29,14 +29,23 @@ textarea{
 
 
 /* Admin Login */
+.adminWebContainer{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #3D4873;
+}
+
 
 .Admin-login-container{
     background-color: #3D4873;
+    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: center;
     height: 97%;
-    padding: .8em;
+    padding: 1em;
 
 }
 
@@ -90,6 +99,7 @@ textarea{
 
 .login-button{
     position: absolute;
+    bottom: 0;
     left: 0;
     width: 100%;
     height: 75px;
@@ -107,6 +117,38 @@ textarea{
 
 @media screen and (min-width: 518px) {
     .Admin-login-container{
-        padding: 100px;
+        width: 60%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .login-button{
+        position: relative;
+    }
+    .form-container{
+        width: 50%;
+    }
+    .formRow{
+        display: flex;
+        flex-flow: row wrap;
+        padding-left: 10%;
+    }
+    .col-1-3{
+        flex: 0 0 50%
+    }
+    .col-1-2{
+        flex: 0 0 30%;
+    }
+    .formContainer{
+        padding-top: 5%;
+    }
+
+    .btn{
+        height: 50px;
+    }
+
+    textarea{
+        margin-bottom: 2%;
     }
 }
